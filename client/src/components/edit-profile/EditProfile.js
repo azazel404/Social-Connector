@@ -14,6 +14,7 @@ import Navbar from "../layout/Navbar";
 class CreateProfile extends Component {
   constructor(props) {
     super(props);
+    // MEMBUAT STATE
     this.state = {
       displaySocialInputs: false,
       handle: '',
@@ -32,15 +33,17 @@ class CreateProfile extends Component {
       errors: {}
     };
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this); //RETURN FUNC ONCHANGE
+    this.onSubmit = this.onSubmit.bind(this); //RETURN FUNC ONSUBMIT
   }
 
   componentDidMount() {
+    //JALANKAN FUNC ACTION GET PROFILE
     this.props.getCurrentProfile();
   }
 
   componentWillReceiveProps(nextProps) {
+    // CATCH ERROR
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
@@ -97,7 +100,7 @@ class CreateProfile extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
+    //CREATE NEW OBJECT DATA
     const profileData = {
       handle: this.state.handle,
       company: this.state.company,
@@ -113,10 +116,10 @@ class CreateProfile extends Component {
       youtube: this.state.youtube,
       instagram: this.state.instagram
     };
-
+    //JALANKAN FUNCTION CREATE PROFILE  ACTION
     this.props.createProfile(profileData, this.props.history);
   }
-
+  //JALANKAN FUNC ONCHANGE MENANGKAP HASIL KETIKAN FORM DI MASING" NAME
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }

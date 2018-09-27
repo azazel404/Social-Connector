@@ -6,6 +6,7 @@ import TextFieldGroup from '../common/TextFieldGroup';
 import {Link} from "react-router-dom";
 class Login extends Component {
   constructor() {
+    //membuat state
     super();
     this.state = {
       email: '',
@@ -13,21 +14,25 @@ class Login extends Component {
       errors: {}
     };
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this); //mereturn onchange
+    this.onSubmit = this.onSubmit.bind(this); //mereturn onsubmit
   }
 
   componentDidMount() {
+    //validasi dijalankan setelah render selesai ,
+    //pengecekan jika user authenticated nya true , akan dilarikan ke dashboard
     if (this.props.auth.isAuthenticated) {
       this.props.history.push('/dashboard');
     }
   }
 
+  //vaidasi dinjalankan sebelum render
   componentWillReceiveProps(nextProps) {
+    //jika sudah login authenticated true , maka dilarikan ke dashboard
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push('/dashboard');
     }
-
+    //jika ada error , tampilkan error
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
@@ -35,20 +40,21 @@ class Login extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
+    //membuat object userData
     const userData = {
       email: this.state.email,
       password: this.state.password
     };
-
+    //menjalankan func action login user
     this.props.loginUser(userData);
   }
-
+  //menangkap hasil ketikan form atau name dalam form agar bisa disambung ke func onsubmit
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
+    // membuat state error
     const { errors } = this.state;
 
     return (
@@ -95,9 +101,11 @@ Login.propTypes = {
   errors: PropTypes.object.isRequired
 };
 
+//membuat state menjadi props
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 });
-
+//bagian pertama state menjadi props
+//bagian kedua deklarasi action yang dibuat di actions creator
 export default connect(mapStateToProps, { loginUser })(Login);

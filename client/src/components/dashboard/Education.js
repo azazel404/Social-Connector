@@ -4,12 +4,17 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { deleteEducation } from '../../actions/profileActions';
 
+
+
+//STATEFULL COMPONENT MENAMPILKAN EDUCATION
 class Education extends Component {
+   //FUNCTION UNTUK MENJALANKAN ACTION EDUCATION
   onDeleteClick(id) {
     this.props.deleteEducation(id);
   }
 
   render() {
+        //MENEGELUARKAN DATA / FETCH DATA
     const education = this.props.education.map(edu => (
       <tr key={edu._id}>
         <td>{edu.school}</td>

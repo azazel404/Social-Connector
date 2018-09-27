@@ -1,6 +1,7 @@
 import React from 'react';
 import spinner from './spinner.gif';
 
+//FUNCTIONAL COMPONENT UNTUK LOADING SPINNER
 export default () => {
   return (
     <div>

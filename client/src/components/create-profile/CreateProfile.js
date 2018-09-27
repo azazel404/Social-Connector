@@ -12,6 +12,7 @@ import Navbar from "../layout/Navbar";
 class CreateProfile extends Component {
   constructor(props) {
     super(props);
+    // MEMBUAT STATE
     this.state = {
       displaySocialInputs: false,
       handle: '',
@@ -30,19 +31,22 @@ class CreateProfile extends Component {
       errors: {}
     };
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this); //MERETURN STATE
+    this.onSubmit = this.onSubmit.bind(this); //ME RETURN 
   }
 
+  //lifecycle sebelum render mulai dia sudah mulai
   componentWillReceiveProps(nextProps) {
+    //menangkap error
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
   }
 
+  //untuk function submit form
   onSubmit(e) {
     e.preventDefault();
-
+    //buat object data
     const profileData = {
       handle: this.state.handle,
       company: this.state.company,
@@ -58,19 +62,20 @@ class CreateProfile extends Component {
       youtube: this.state.youtube,
       instagram: this.state.instagram
     };
-
+    //menjalankan func action create profile data
     this.props.createProfile(profileData, this.props.history);
   }
-
+//membuat menangkap form hasil yang diketik atau name per masing form
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
+    //state error dan display social
     const { errors, displaySocialInputs } = this.state;
 
     let socialInputs;
-
+    //validasi jika social input true akan dibuka input group form
     if (displaySocialInputs) {
       socialInputs = (
         <div>
@@ -213,7 +218,7 @@ class CreateProfile extends Component {
                   error={errors.bio}
                   info="Tell us a little about yourself"
                 />
-
+                {/* JIKA BUTTON TIDAK SAMA TRUE , ATAU TIDAK SAMA FALSE MAKA FUNC SOCIAL INPUT BERJALAN */}
                 <div className="mb-3">
                   <button
                     type="button"
@@ -248,11 +253,13 @@ CreateProfile.propTypes = {
   errors: PropTypes.object.isRequired
 };
 
+//FUNCTION STATE MENJADI PROPS
 const mapStateToProps = state => ({
   profile: state.profile,
   errors: state.errors
 });
 
+//WITHROUTER DIGUNAKAN KETIKA CREATE PROFILE AKAN DILARIKAN KE URL BERIKUTNYA / HREF BISA DIBILANG
 export default connect(mapStateToProps, { createProfile })(
   withRouter(CreateProfile)
 );

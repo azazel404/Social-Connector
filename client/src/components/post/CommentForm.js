@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { addComment } from '../../actions/postActions';
 
+
+//STATEFUL COMPONENT PEMBUAT FORM COMMENT
 class CommentForm extends Component {
   constructor(props) {
     super(props);
+    //MEMBUAT STATE
     this.state = {
       text: '',
       errors: {}
@@ -24,19 +27,21 @@ class CommentForm extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    //MEMBUAT PROPS DARI REDUCER 
+    const { user } = this.props.auth; //PROPS USER
+    const { postId } = this.props; //PROPS POST ID
 
-    const { user } = this.props.auth;
-    const { postId } = this.props;
-
+    //MEMBUAT OBJECT NEW COMMENT
     const newComment = {
       text: this.state.text,
       name: user.name,
       avatar: user.avatar
     };
-
+    //MENJALANKAN FUNC ADD COMENT ARGUMEN PERTAMA MENGECATCH POST , ARGUMEN KEDUA CATCH OBJECT NEW COMMENT
     this.props.addComment(postId, newComment);
     this.setState({ text: '' });
   }
+
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });

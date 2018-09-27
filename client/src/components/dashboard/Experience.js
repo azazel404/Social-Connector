@@ -4,12 +4,17 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { deleteExperience } from '../../actions/profileActions';
 
+
+//STATEFULL COMPONENT MENAMPILKAN EXPERIENCE
 class Experience extends Component {
+
+  //FUNCTION UNTUK MENJALANKAN ACTION DELETE
   onDeleteClick(id) {
     this.props.deleteExperience(id);
   }
 
   render() {
+    //MENEGELUARKAN DATA / FETCH DATA
     const experience = this.props.experience.map(exp => (
       <tr key={exp._id}>
         <td>{exp.company}</td>

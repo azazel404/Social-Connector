@@ -1,5 +1,6 @@
 import React from 'react';
 
+//STATEFULL JIKA URL YANG DIMASUKAN SALAH AKAN DILEMPARKAN KE TEMPAT COMPONENT ERROR
 export default () => {
   return (
     <div>

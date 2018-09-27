@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { addEducation } from '../../actions/profileActions';
 
 class AddEducation extends Component {
+  //membuat state 
   constructor(props) {
     super(props);
     this.state = {
@@ -21,20 +22,22 @@ class AddEducation extends Component {
       disabled: false
     };
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onCheck = this.onCheck.bind(this);
+    this.onChange = this.onChange.bind(this); // mereturn func onchange
+    this.onSubmit = this.onSubmit.bind(this); //mere turn func onsubmit
+    this.onCheck = this.onCheck.bind(this); // mereturn func oncheck
   }
 
   componentWillReceiveProps(nextProps) {
+    //jika menemukan error akan menapilkan error
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
   }
 
+  //function submit data
   onSubmit(e) {
     e.preventDefault();
-
+    //membuat object state education data
     const eduData = {
       school: this.state.school,
       degree: this.state.degree,
@@ -44,14 +47,18 @@ class AddEducation extends Component {
       current: this.state.current,
       description: this.state.description
     };
-
+    //menjalankan function action API add education
     this.props.addEducation(eduData, this.props.history);
   }
 
+  //membuat event listener form agar bisa keinput tulisan pada kolom form
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  //membuat funct untuk input button 
+  //disable jika di click , jika tidak current tidak aktif (false to true)
+  //current jika di click , jika tidak , current tidak masuk ke db (false to true)
   onCheck(e) {
     this.setState({
       disabled: !this.state.disabled,

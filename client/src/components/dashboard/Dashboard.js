@@ -8,46 +8,37 @@ import ProfileActions from './ProfileActions';
 import Experience from './Experience';
 import Education from './Education';
 import Navbar from "../layout/Navbar";
+import '../layout/landing.css';
+
+
 
 class Dashboard extends Component {
+  // LIFECYLE UNTUK MENDAPATKAN FETCH DATA PROFILE
   componentDidMount() {
     this.props.getCurrentProfile();
   }
 
   onDeleteClick(e) {
+    //FUCN UNTUK MENJALANKAN ACTION DELETE
     this.props.deleteAccount();
   }
 
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
-
     let dashboardContent;
-
     if (profile === null || loading) {
-      dashboardContent = <Spinner />;
-    } else {
-      // Check if logged in user has profile data
+      dashboardContent = <Spinner />
+    }
+    else {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
-            <p className="lead text-muted">
-              Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
-            </p>
-            <ProfileActions />
             <Experience experience={profile.experience} />
             <Education education={profile.education} />
-            <div style={{ marginBottom: '60px' }} />
-            <button
-              onClick={this.onDeleteClick.bind(this)}
-              className="btn btn-danger"
-            >
-              Delete My Account
-            </button>
           </div>
-        );
+        )
       } else {
-        // User is logged in but has no profile
         dashboardContent = (
           <div>
             <p className="lead text-muted">Welcome {user.name}</p>
@@ -56,23 +47,49 @@ class Dashboard extends Component {
               Create Profile
             </Link>
           </div>
-        );
+        )
       }
     }
 
     return (
       <div>
-        <Navbar />  
-        <div className="dashboard">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <h1 className="display-4">Dashboard</h1>
-                {dashboardContent}
+        <Navbar />
+        <main className="main-content " role="main">
+          <div className="row mb-4">
+            <div className="col-md-12">
+              <div className="card">
+                <div className="card-user-profile">
+                  <div className="profile-page-left">
+                    <div className="row">
+                      <div className="col-lg-12 mb-4">
+                        <div className="profile-picture profile-picture-lg bg-gradient bg-primary mb-4">
+                          <img src={user.avatar} width={144} height={144} alt=""/>
+                        </div>
+                        <ProfileActions />
+                        <Link to="/feed" className="btn btn-secondary btn-block btn-gradient waves-effect waves-light" href="#" style={{ marginTop: '10px' }}>
+                          <span className="gradient">
+                            <i className="batch-icon batch-icon-user-alt-add-2" />
+                            create Post
+                            </span>
+                        </Link>
+                        {/* <Link to={`/profile/${profile.handle}`} className="btn btn-warning btn-block btn-gradient waves-effect waves-light" href="#">
+                          <span className="gradient">
+                            <i className="batch-icon batch-icon-user-alt-add-2" />
+                            Show Profile
+                            
+                          </span>
+                        </Link> */}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="profile-page-center">
+                    {dashboardContent}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </main>
       </div>
       
     );

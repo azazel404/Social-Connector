@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CommentItem from './CommentItem';
 
+//STATEFULL COMPONENT FETCH DATA
 class CommentFeed extends Component {
   render() {
     const { comments, postId } = this.props;

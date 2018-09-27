@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteComment } from '../../actions/postActions';
 
+//STATEFUL MENAMPILKAN COMMENT DALAM BENTUK FORM
 class CommentItem extends Component {
+  //FUNCTION DELETE
   onDeleteClick(postId, commentId) {
+    //FUNC UNTUK ACTION DELETE
     this.props.deleteComment(postId, commentId);
   }
 

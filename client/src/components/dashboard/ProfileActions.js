@@ -1,19 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+///STATELESS FUNCTION ACTION
 const ProfileActions = () => {
   return (
-    <div className="btn-group mb-4" role="group">
-      <Link to="/edit-profile" className="btn btn-light">
-        <i className="fas fa-user-circle text-info mr-1" /> Edit Profile
+    <div>
+      <Link to="/edit-profile" className="btn btn-primary btn-block btn-gradient waves-effect waves-light" href="#">
+        <span className="gradient">
+          <i className="batch-icon batch-icon-user-alt-add-2" />
+          Edit Profile
+      </span>
       </Link>
-      <Link to="/add-experience" className="btn btn-light">
-        <i className="fab fa-black-tie text-info mr-1" />
-        Add Experience
+      <Link to="/add-experience" className="btn btn-info btn-block btn-gradient waves-effect waves-light" href="#">
+        <span className="gradient">
+          <i className="batch-icon batch-icon-user-alt-add-2" />
+          Add Experience
+        </span>
       </Link>
-      <Link to="/add-education" className="btn btn-light">
-        <i className="fas fa-graduation-cap text-info mr-1" />
-        Add Education
+      <Link to="/add-education" className="btn btn-danger btn-block btn-gradient waves-effect waves-light" href="#">
+        <span className="gradient">
+          <i className="batch-icon batch-icon-user-alt-add-2" />
+          Add Education
+      </span>
       </Link>
     </div>
   );

@@ -2,6 +2,8 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
+
+//FUNCTIONAL COMPONENT FORM LOGIN AUTH DAN FORM LAINNYA
 const SelectListGroup = ({ name, value, error, info, onChange, options }) => {
   const selectOptions = options.map(option => (
     <option key={option.label} value={option.value}>

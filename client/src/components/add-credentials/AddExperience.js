@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { addExperience } from '../../actions/profileActions';
 
 class AddExperience extends Component {
+  //membuat state 
   constructor(props) {
     super(props);
     this.state = {
@@ -21,12 +22,13 @@ class AddExperience extends Component {
       disabled: false
     };
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onCheck = this.onCheck.bind(this);
+    this.onChange = this.onChange.bind(this); //me retunr func ochange
+    this.onSubmit = this.onSubmit.bind(this); // me return func onsubmit
+    this.onCheck = this.onCheck.bind(this); // me return func oncheck
   }
 
   componentWillReceiveProps(nextProps) {
+    //menangkap error
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
@@ -34,7 +36,7 @@ class AddExperience extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
+    //membuat object menampung state
     const expData = {
       company: this.state.company,
       title: this.state.title,
@@ -44,14 +46,16 @@ class AddExperience extends Component {
       current: this.state.current,
       description: this.state.description
     };
-
+    //menjalankan action addexperience 
     this.props.addExperience(expData, this.props.history);
   }
-
+//membuat event listener form agar bisa keinput tulisan pada kolom form
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-
+  //membuat funct untuk input button 
+  //disable jika di click , jika tidak current tidak aktif (false to true)
+  //current jika di click , jika tidak , current tidak masuk ke db (false to true)
   onCheck(e) {
     this.setState({
       disabled: !this.state.disabled,

@@ -11,6 +11,7 @@ import Navbar from "../layout/Navbar";
 
 class Post extends Component {
   componentDidMount() {
+    //UNTUK MENANGKAP POST SPESIFIK DENGAN ID 
     this.props.getPost(this.props.match.params.id);
   }
 

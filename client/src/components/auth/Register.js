@@ -8,6 +8,7 @@ import { Link} from "react-router-dom";
 class Register extends Component {
   constructor() {
     super();
+    //membuat state
     this.state = {
       name: '',
       email: '',
@@ -16,36 +17,40 @@ class Register extends Component {
       errors: {}
     };
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);//mereturn onchange
+    this.onSubmit = this.onSubmit.bind(this);//mereturn onsubmit
   }
 
   componentDidMount() {
+     //validasi dijalankan setelah render selesai ,
+    //pengecekan jika user authenticated nya true , akan dilarikan ke dashboard
     if (this.props.auth.isAuthenticated) {
       this.props.history.push('/dashboard');
     }
   }
-
+//vaidasi dinjalankan sebelum render
   componentWillReceiveProps(nextProps) {
+     //jika ada error , tampilkan error
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
   }
 
   onChange(e) {
+      //menangkap hasil ketikan form atau name dalam form agar bisa disambung ke func onsubmit
     this.setState({ [e.target.name]: e.target.value });
   }
 
   onSubmit(e) {
     e.preventDefault();
-
+ //membuat object newUse
     const newUser = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
       password2: this.state.password2
     };
-
+//menjalankan func action register user
     this.props.registerUser(newUser, this.props.history);
   }
 
@@ -110,10 +115,11 @@ Register.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
-
+//membuat state menjadi props
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 });
-
+//bagian pertama state menjadi props
+//bagian kedua deklarasi action yang dibuat di actions creator
 export default connect(mapStateToProps, { registerUser })(withRouter(Register));

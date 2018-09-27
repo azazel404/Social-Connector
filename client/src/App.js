@@ -5,9 +5,11 @@ import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
 import { clearCurrentProfile } from './actions/profileActions';
 
+//CONF STORE REDUX
 import { Provider } from 'react-redux';
 import store from './store';
 
+//IMPORT ROUTE COMPONENT ALL FILE 
 import PrivateRoute from './components/common/PrivateRoute';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
@@ -25,6 +27,7 @@ import NotFound from './components/not-found/NotFound';
 
 import './App.css';
 
+//CLEAR CACHE TOKEN
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth
