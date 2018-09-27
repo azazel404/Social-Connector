@@ -4,7 +4,7 @@ SocialApps social , with course udemy
 
 learning react with backend full development 
 you can download or clone
-just git clone https://github.com/azazel404/SocialAppsSocial.git
+just git clone https://github.com/azazel404/Social-Connector.git
 
 1. cd directory
 2. npm install in backend , after that cd client npm install
