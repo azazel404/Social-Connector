@@ -3,7 +3,7 @@ SocialApps social , with course udemy
 
 
 learning react with backend full development 
-you can download or clone
+you can download or clone , demo :https://social-connection1.herokuapp.com
 just git clone https://github.com/azazel404/Social-Connector.git
 
 1. cd directory
